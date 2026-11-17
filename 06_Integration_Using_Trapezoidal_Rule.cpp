@@ -1,0 +1,41 @@
+// QUESTION 6: INTEGRATION USING THE TRAPEZOIDAL RULE
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double a, b, h, sum = 0;
+    int n;
+
+    cout << "Enter lower limit: ";
+    cin >> a;
+
+    cout << "Enter upper limit: ";
+    cin >> b;
+
+    cout << "Enter number of intervals: ";
+    cin >> n;
+
+    if (n <= 0 || b <= a)
+    {
+        cout << "Invalid input";
+        return 0;
+    }
+
+    h = (b - a) / n;
+
+    sum = (a * a + b * b) / 2;
+
+    for (int i = 1; i < n; i++)
+    {
+        double x = a + i * h;
+        sum = sum + x * x;
+    }
+
+    double result = h * sum;
+
+    cout << "Integration = " << result;
+
+    return 0;
+}
