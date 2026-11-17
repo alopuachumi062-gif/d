@@ -1,0 +1,89 @@
+// QUESTION 8: SMART DEVICE USING INHERITANCE AND POLYMORPHISM
+
+#include <iostream>
+using namespace std;
+
+class SmartDevice
+{
+public:
+    virtual ~SmartDevice() {}
+
+    virtual void turnOn()
+    {
+        cout << "Device is ON" << endl;
+    }
+
+    virtual void turnOff()
+    {
+        cout << "Device is OFF" << endl;
+    }
+
+    virtual void getDeviceStatus() = 0;
+};
+
+class SmartLight : public SmartDevice
+{
+public:
+    void turnOn() override
+    {
+        cout << "Smart Light ON at 50% brightness" << endl;
+    }
+
+    void turnOn(int brightness)
+    {
+        cout << "Smart Light ON at "
+             << brightness << "% brightness" << endl;
+    }
+
+    void turnOff() override
+    {
+        cout << "Smart Light OFF" << endl;
+    }
+
+    void getDeviceStatus() override
+    {
+        cout << "Smart Light is working" << endl;
+    }
+};
+
+class SmartThermostat : public SmartDevice
+{
+public:
+    void turnOn() override
+    {
+        cout << "Smart Thermostat ON" << endl;
+    }
+
+    void turnOff() override
+    {
+        cout << "Smart Thermostat OFF" << endl;
+    }
+
+    void getDeviceStatus() override
+    {
+        cout << "Smart Thermostat is working" << endl;
+    }
+};
+
+int main()
+{
+    SmartLight light;
+    SmartThermostat thermostat;
+
+    SmartDevice *device[2];
+
+    device[0] = &light;
+    device[1] = &thermostat;
+
+    for (int i = 0; i < 2; i++)
+    {
+        device[i]->turnOn();
+        device[i]->getDeviceStatus();
+        device[i]->turnOff();
+    }
+
+    cout << "\nOverloaded Function:" << endl;
+    light.turnOn(80);
+
+    return 0;
+}
